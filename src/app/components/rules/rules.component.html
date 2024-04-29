@@ -1,0 +1,18 @@
+<div class="banner_container" *ngIf="showModal()">
+    <div class="banner">
+        <div class="banner_header">
+            <p class="title">Rules</p>
+            <button type="button" class="btn_close" (click)="toogleModal()">
+                <img src="../../../assets/images/icon-close.svg" alt="Close">
+            </button>
+        </div>
+        <img src="../../../assets/images/image-rules.svg" alt="">
+    </div>
+</div>
+<button 
+    type="button" 
+    class="btn_rules"
+    (click)="toogleModal()"
+>
+    RULES
+</button>

@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: "Barlow Semi Condensed", sans-serif;
+}
+:root{
+    --ScissorsGradient: hsl(39, 89%, 49%) to hsl(40, 84%, 53%);
+    --PaperGradient: hsl(230, 89%, 62%) to hsl(230, 89%, 65%);
+    --RockGradient: hsl(349, 71%, 52%) to hsl(349, 70%, 56%);
+    --LizardGradient: hsl(261, 73%, 60%) to hsl(261, 72%, 63%);
+    --Cyan: hsl(189, 59%, 53%) to hsl(189, 58%, 57%);
+    --DarkText: hsl(229, 25%, 31%);
+    --ScoreText: hsl(229, 64%, 46%);
+    --HeaderOutline: hsl(217, 16%, 45%);
+}

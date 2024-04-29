@@ -1,0 +1,41 @@
+<div class="games_container" *ngIf="myPicked === ''">
+    <div class="row_one">
+        <button type="button" class="btn btn_paper" data-picked="paper" (click)="handlerPicked($event)">
+            <img src="../../../assets/images/icon-paper.svg" alt="">
+        </button>
+        <button type="button"  class="btn btn_scissors" data-picked="scissors" (click)="handlerPicked($event)">
+            <img src="../../../assets/images/icon-scissors.svg" alt="">
+        </button>
+    </div>
+    <div class="row_two">
+        <button type="button"  class="btn btn_rock" data-picked="rock" (click)="handlerPicked($event)">
+            <img src="../../../assets/images/icon-rock.svg" alt="">
+        </button>
+    </div>
+</div>
+<div class="dule" *ngIf="myPicked !== ''">
+    <div class="you_picked">
+        <h2>YOU PICKED</h2>
+        <button type="button" class="btn btn_{{imgDir}}">
+            <img [src]="myPicked" alt="picked">
+        </button>
+    </div>
+    <div class="result" *ngIf="btn_hidden">
+        <h2>YOU {{ resultMessege }}</h2>
+        <button type="button" class="btn_again" (click)="reset()">PLAY AGAIN</button>
+    </div>
+    <div class="house_picked">
+        <H2>THE HOUSE PICKED</H2>
+        <div class="grid_center" *ngIf="!btn_hidden">
+            <div class="circle"></div>
+        </div>
+        <button 
+            *ngIf="btn_hidden"
+            type="button"
+            class="btn btn_{{imgHouseDir}}"
+        >
+            <img [src]="housePicked" alt="picked">
+        </button>
+       
+    </div>
+</div>
