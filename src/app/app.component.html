@@ -1,7 +1,7 @@
 <div class="main">
   <div class="container">
     <app-header-score [points]="points()" />
-    <app-games />
+    <app-games [points]="points()" (updatePoints)="updatePoints($event)" />
     <app-rules />
   </div>
 </div>

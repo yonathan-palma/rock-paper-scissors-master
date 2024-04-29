@@ -1,4 +1,4 @@
-import { Component, Injector, effect, inject, signal } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,8 +10,8 @@ import { CommonModule } from '@angular/common';
 })
 export class GamesComponent {
 
-  point = signal<number>(0)
-  injector = inject(Injector);
+  @Input({required:true}) points!:number
+  @Output() updatePoints = new EventEmitter()
 
   myPicked:string = ""
   housePicked = ""
@@ -50,12 +50,13 @@ export class GamesComponent {
     ) {
       // El usuario gana
       this.resultMessege = "WIN"
-      this.point.update(prevState=> prevState + 1);
+      this.updatePoints.emit(this.points + 1)
       console.log("¡Ganaste! Tú eliges " + myPicked + " y la máquina elige " + housePicked + ".");
     } else {
       // El usuario pierde
       this.resultMessege = "LOSE"
-      this.point.update(prevState=> prevState > 1 ?( prevState - 1) : 0);
+      this.points > 0 && this.updatePoints.emit(this.points - 1)
+      console.log(this.points);
       console.log("Perdiste. Tú eliges " + myPicked + " y la máquina elige " + housePicked + ".");
     }
   }
@@ -63,23 +64,8 @@ export class GamesComponent {
   reset(): void{
     this.myPicked = ""
     this.housePicked = ""
-    // this.resultMessege:string = "" 
     this.btn_hidden = false
     console.log("reset")
-  }
-  ngOnInit(): void{
-    if (localStorage.hasOwnProperty("point")) {
-      const point = parseInt(localStorage.getItem("point") ?? "0")
-      this.point.set(point);
-    }
-    this.trackPoint()
-  }
-
-  trackPoint(): void{
-    effect(()=>{
-      const point = this.point()
-      localStorage.setItem("point", JSON.stringify(point))
-    }, {injector: this.injector})
   }
 
 }
